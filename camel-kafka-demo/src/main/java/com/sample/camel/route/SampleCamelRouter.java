@@ -38,8 +38,8 @@ public class SampleCamelRouter extends RouteBuilder {
         .apiProperty("api.version", "1.0.0");
 
     rest().description("Service to say Goodbye to you")
-        .get("/goodbye").produces("text/plain")
-        .responseMessage().code(200).message("OK").endResponseMessage()
+        .post("/goodbye").produces("text/plain")
+        .responseMessage().code(200).endResponseMessage()
         .route().routeId("say-goodbye")
         .to("direct:goodbye");
     
