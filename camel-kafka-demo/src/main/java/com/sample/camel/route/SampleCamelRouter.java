@@ -46,7 +46,7 @@ public class SampleCamelRouter extends RouteBuilder {
    from("direct:goodbye")
         .routeId("log-goodbye")
         .log(LoggingLevel.INFO, "Goodbye World!!!!")
-        .transform().simple('{"text":"from goodbye endpoint in running application"}')
+        .transform().simple("{'text':'from goodbye endpoint in running application'}")
         .to("kafka:serverless-demo");
     }
 
