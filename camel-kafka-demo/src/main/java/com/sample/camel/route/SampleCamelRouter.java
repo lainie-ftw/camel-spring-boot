@@ -33,7 +33,7 @@ public class SampleCamelRouter extends RouteBuilder {
     public void configure() throws Exception {
     restConfiguration()
         .component("servlet")
-        .apiContextPath("api")
+        .apiContextPath("api");
 
     rest().description("Translate English to Pig Latin")
         .post("/translate").produces("text/plain")
