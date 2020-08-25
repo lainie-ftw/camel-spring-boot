@@ -34,19 +34,15 @@ public class SampleCamelRouter extends RouteBuilder {
     restConfiguration()
         .component("servlet")
         .apiContextPath("api")
-        .apiProperty("api.title", "Goodbye World")
-        .apiProperty("api.version", "1.0.0");
 
-    rest().description("Service to say Goodbye to you")
-        .post("/goodbye").produces("text/plain")
+    rest().description("Translate English to Pig Latin")
+        .post("/translate").produces("text/plain")
         .responseMessage().code(200).endResponseMessage()
-        .route().routeId("say-goodbye")
-        .to("direct:goodbye");
+        .to("direct:translate");
     
-   from("direct:goodbye")
-        .routeId("log-goodbye")
-        .log(LoggingLevel.INFO, "Goodbye World!!!!")
-        .transform().simple("{'text':'from goodbye endpoint in running application'}")
+   from("direct:translate")
+        .log(LoggingLevel.INFO, "Something hit /piglatin/translate end point!")
+        .transform().simple("{'text':'from /piglatin/translate endpoint in running application'}")
         .to("kafka:serverless-demo");
     }
 
